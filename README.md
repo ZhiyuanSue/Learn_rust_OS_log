@@ -25,3 +25,31 @@
 没有位域bit-field，或者类似什么的东西，听上去不错，额，我谢谢你。
 
 看上去这门语言的设计者对于Compound Types的期望是，希望我们这些使用者不要关心诸如alignment这样的事情，而且位域也不支持，我开始对使用rust来构建一个OS失去信心了。
+
+### Function
+
+我看了一圈，觉得唯一值得记录的只有statement和expr的分开表示。
+
+### Ownership
+
+这应当类似于垃圾收集机制。
+
+```
+Each value in Rust has an owner.
+There can only be one owner at a time.
+When the owner goes out of scope, the value will be dropped.
+```
+
+所以rust设计的机制就是如果一个持有者不再持有某个memory（确切的说是以走出作用域为标准的），那么就使用drop释放掉他。这对于悬空指针的安全使用是非常重要的。
+
+对于string类，存储的不是实际的内容，而是一个结构，用一个指针指向存储内容，该结构还包括len什么的，所以如果string进行一个assign，就相当于一个软拷贝，实际上是该结构被复制过去。但是现在assign，有两个指针指向他，就不安全，就让前面一个不再生效，同样的，对于多个mut的指向同一个s的引用会出错，也应该是这样的一个原因。要让前面一个生效，那么就要用clone。
+
+确切的说，是下面的条件
+
+```
+Two or more pointers access the same data at the same time.
+At least one of the pointers is being used to write to the data.
+There’s no mechanism being used to synchronize access to the data.
+```
+
+我认为这是吸取了C/C++里面多个指针同时引用同一个对象，然后某个地方的改动导致另一个地方的错误的教训。这在某种情况下是安全的，但是总感觉缺少了一定的灵活性。
