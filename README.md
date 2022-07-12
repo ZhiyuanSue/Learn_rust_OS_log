@@ -53,3 +53,40 @@ There’s no mechanism being used to synchronize access to the data.
 ```
 
 我认为这是吸取了C/C++里面多个指针同时引用同一个对象，然后某个地方的改动导致另一个地方的错误的教训。这在某种情况下是安全的，但是总感觉缺少了一定的灵活性。
+
+## Day2
+
+### struct
+
+struct 总共有三种，一种是传统C类型的，另一种是元组，最后一种好像就弄了个结构体，然后看他打印也只打印了一个结构体名称。好吧差别不大。
+
+printIn里面打印结构体有两种格式：
+
+```
+{:#?}	// print one member per line
+{:?}	// print in one line
+```
+
+另外，还有个dbg！宏，同样可以打印
+
+在结构体中，可以像C++一样定义一些方法。第一个参数必须是&self。
+
+### Test
+
+没啥有用的
+
+### enum
+
+enum相比于C/C++不再是纯粹的int值，可以是string，tuple什么的。
+
+Option枚举类型和null，大概就是为了解决NULL引起的一大堆问题吧
+
+match，这不就是switch么，说是不要break引起的一堆问题，出发点并不错，可是，break不写可以让两个情况合并。match可以有返回值，但是所有的返回值必须一样的类型
+
+对非枚举类型进行match，必须用个下划线
+
+对于存在NULL类型的，需要考虑NULL情况
+
+### if let
+
+没啥用
