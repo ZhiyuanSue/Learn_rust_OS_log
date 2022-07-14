@@ -90,3 +90,31 @@ match，这不就是switch么，说是不要break引起的一堆问题，出发�
 ### if let
 
 没啥用
+
+## Day3
+
+### package crate modules
+
+一个package最多包涵一个库crate，可以包涵1或者更多的二进制crate
+
+模块module
+
+使用双冒号路径分割符
+
+如果不加上pub，那么就是私有的，枚举类型也有类似的。大概这就是对C++的类属性的错综复杂做出一定的改变的结果吧。
+
+use关键字
+
+和其他语言的use差不多，不过这里面是对作用域而不是所谓的命名空间的使用，如果需要引用多个模块，用{}括起来或者干脆一个*
+
+### colllection
+
+主要是vector，string和hash map
+
+实际上应该说是std::collection的应用吧，这个我就不多写了，成员方法和其他语言差不多。
+
+### Error处理
+
+可恢复错误用result<T,E>,不可恢复错误用Panic！
+
+？操作符
