@@ -212,3 +212,25 @@ thread那个练习里面的代码，我觉得可以比较好的理解
 ### 迭代器
 
 没啥好写的，C++迭代器还不简单么？
+
+有几个方法注意一下：filter，map，collect
+
+### 宏
+
+宏的声明
+
+*declarative* macros，类似于模式匹配
+
+*procedural* macros（有三种）
+
+​	Custom `#[derive]` macros
+
+​	Attribute-like macros
+
+​	Function-like macros
+
+使用肯定不用说了，println用了多少了都
+
+今天努力赶实验进度ing。。。总算全都过了，撒花！！！
+
+不过有一说一，rustling的试题里面，不是所有的书本上的东西都有，害，还是得好好读书
